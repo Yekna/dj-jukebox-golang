@@ -13,11 +13,6 @@ import (
 func Register(app *fiber.App, cfg config.Config) {
 	manager := websocket.NewManager()
 
-	// WebSocket (public)
-	// app.Get("/api/ws/:room_pin", wsfiber.New(func(c *wsfiber.Conn) {
-	// 	websocket.WSHandler(manager)(c)
-	// }))
-
 	// Public API group
 	public := app.Group("/api")
 
