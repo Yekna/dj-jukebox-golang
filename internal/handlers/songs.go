@@ -57,6 +57,7 @@ func RequestSong(manager *websocket.Manager) fiber.Handler {
 		manager.Broadcast(pin, fiber.Map{
 			"type": "song_requested",
 			"song": song.Title,
+			"user": song.SubmitterName,
 		})
 
 		return c.JSON(song)
