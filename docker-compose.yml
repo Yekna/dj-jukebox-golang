@@ -1,0 +1,32 @@
+services:
+  api:
+    build: .
+    container_name: go-fiber-api
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    networks:
+      - appnet
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - appnet
+
+volumes:
+  mongo-data:
+
+networks:
+  appnet:
